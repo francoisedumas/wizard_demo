@@ -35,6 +35,7 @@ module StepsControllers
       @house = House.new house_attrs
       @house.save!
       Rails.cache.delete session.id
+      flash[:notice] = 'All set!'
       house_path(@house)
     end
   end

@@ -1,23 +1,9 @@
 = turbo_frame_tag dom_id(@house) do
-  = form_with model: @house, url: wizard_path, method: :patch, data: { turbo_frame: :_top } do |f| # Last step we want a _top target
-    - if f.object.errors.any?
-      .error_messages
-        - f.object.errors.full_messages.each do |error|
-          p = error
+  = render(Header::Component.new(title: "House Numbers", backpath: previous_wizard_path)) do
+    = simple_form_for @house, url: wizard_path, method: :patch, data: { turbo_frame: :_top } do |f| # Last step we want a _top target
 
-    fieldset
-      legend House Numbers
+      = f.input :rooms, label: "rooms", placeholder: "rooms"
+      = f.input :square_feet, label: "Square feet", placeholder: "Square feet"
 
-      div
-        = f.label :rooms
-        = f.text_field :rooms
-
-      div
-        = f.label :square_feet
-        = f.text_field :square_feet
-
-      br
-
-      div
-        = link_to 'Previous Step', previous_wizard_path
-        = f.submit 'Complete'
+      = f.button :submit, "Complete", class: "btn btn-primary w-full mb-4"
+      = link_to 'Previous Step', previous_wizard_path, class: "btn btn-secondary w-full"

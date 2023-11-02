@@ -1,23 +1,9 @@
 = turbo_frame_tag dom_id(@house) do
-  = form_with model: @house, url: wizard_path, method: :patch do |f|
-    - if f.object.errors.any?
-      .error_messages
-        - f.object.errors.full_messages.each do |error|
-          p = error
+  = render(Header::Component.new(title: "House Info", backpath: previous_wizard_path)) do
+    = simple_form_for @house, url: wizard_path, method: :patch do |f|
 
-    fieldset
-      legend House Info
+      = f.input :interior_color, label: "Interior color", placeholder: "Interior color"
+      = f.input :exterior_color, label: "Exterior color", placeholder: "Exterior color"
 
-      div
-        = f.label :interior_color
-        = f.text_field :interior_color
-
-      div
-        = f.label :exterior_color
-        = f.text_field :exterior_color
-
-      br
-
-      div
-        = link_to 'Previous Step', previous_wizard_path
-        = f.submit 'Continue'
+      = f.button :submit, "Continue", class: "btn btn-primary w-full mb-4"
+      = link_to 'Previous Step', previous_wizard_path, class: "btn btn-secondary w-full"
