@@ -1,0 +1,23 @@
+= turbo_frame_tag dom_id(@house) do
+  = form_with model: @house, url: wizard_path, method: :patch do |f|
+    - if f.object.errors.any?
+      .error_messages
+        - f.object.errors.full_messages.each do |error|
+          p = error
+
+    fieldset
+      legend House Info
+
+      div
+        = f.label :interior_color
+        = f.text_field :interior_color
+
+      div
+        = f.label :exterior_color
+        = f.text_field :exterior_color
+
+      br
+
+      div
+        = link_to 'Previous Step', previous_wizard_path
+        = f.submit 'Continue'

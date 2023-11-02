@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class HousesController < ApplicationController
   before_action :set_house, only: %i[ show edit update destroy ]
 
@@ -12,7 +14,8 @@ class HousesController < ApplicationController
 
   # GET /houses/new
   def new
-    @house = House.new
+    Rails.cache.fetch(session.id) { Hash.new } # Only non-vanilla-Rails code here
+    redirect_to build_house_path(House.form_steps.keys.first)
   end
 
   # GET /houses/1/edit

@@ -1,0 +1,23 @@
+= turbo_frame_tag dom_id(@house) do
+  = form_with model: @house, url: wizard_path, method: :patch, data: { turbo_frame: :_top } do |f| # Last step we want a _top target
+    - if f.object.errors.any?
+      .error_messages
+        - f.object.errors.full_messages.each do |error|
+          p = error
+
+    fieldset
+      legend House Numbers
+
+      div
+        = f.label :rooms
+        = f.text_field :rooms
+
+      div
+        = f.label :square_feet
+        = f.text_field :square_feet
+
+      br
+
+      div
+        = link_to 'Previous Step', previous_wizard_path
+        = f.submit 'Complete'
