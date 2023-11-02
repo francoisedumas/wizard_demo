@@ -1,5 +1,3 @@
-p style="color: green" = notice
-
 h1 <%= human_name.pluralize %>
 
 #<%= plural_table_name %>
