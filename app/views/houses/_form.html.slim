@@ -1,0 +1,34 @@
+= form_with(model: @house) do |form|
+  - if @house.errors.any?
+    div style="color: red"
+      h2 = "#{pluralize(@house.errors.count, "error")} prohibited this house from being saved:"
+      ul
+        - @house.errors.each do |error|
+          li = error.full_message
+
+  div
+    = form.label :address, style: "display: block"
+    = form.text_field :address
+
+  div
+    = form.label :current_family_last_name, style: "display: block"
+    = form.text_field :current_family_last_name
+
+  div
+    = form.label :interior_color, style: "display: block"
+    = form.text_field :interior_color
+
+  div
+    = form.label :exterior_color, style: "display: block"
+    = form.text_field :exterior_color
+
+  div
+    = form.label :rooms, style: "display: block"
+    = form.number_field :rooms
+
+  div
+    = form.label :square_feet, style: "display: block"
+    = form.number_field :square_feet
+
+  div
+    = form.submit

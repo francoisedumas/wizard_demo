@@ -1,0 +1,11 @@
+p style="color: green" = notice
+
+h1 Houses
+
+#houses
+  - @houses.each do |house|
+    == render house
+    p
+      = link_to "Show this house", house
+
+= link_to "New house", new_house_path
